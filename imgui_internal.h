@@ -1347,6 +1347,7 @@ struct ImGuiContext
 
     // Viewports
     ImVector<ImGuiViewportP*> Viewports;                        // Active viewports (always 1+, and generally 1 unless multi-viewports are enabled). Each viewports hold their copy of ImDrawData.
+    ImGuiViewport*         default_viewport = nullptr;
     float                   CurrentDpiScale;                    // == CurrentViewport->DpiScale
     ImGuiViewportP*         CurrentViewport;                    // We track changes of viewport (happening in Begin) so we can call Platform_OnChangedViewport()
     ImGuiViewportP*         MouseViewport;

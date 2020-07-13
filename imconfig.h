@@ -106,3 +106,8 @@ namespace ImGui
     void MyFunction(const char* name, const MyMatrix44& v);
 }
 */
+
+#define ImTextureID GLuint
+
+#define IMGUI_IMPL_OPENGL_LOADER_CUSTOM "../ogl.h"
+#include IMGUI_IMPL_OPENGL_LOADER_CUSTOM

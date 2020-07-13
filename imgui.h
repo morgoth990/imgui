@@ -811,6 +811,8 @@ namespace ImGui
     // Note: You may use GetWindowViewport() to get the current viewport of the current window.
     IMGUI_API ImGuiPlatformIO&  GetPlatformIO();                                                // platform/renderer functions, for back-end to setup + viewports list.
     IMGUI_API ImGuiViewport*    GetMainViewport();                                              // main viewport. same as GetPlatformIO().MainViewport == GetPlatformIO().Viewports[0].
+    IMGUI_API ImGuiViewport*    GetDefaultViewport();                                           
+    IMGUI_API void              SetDefaultViewport(ImGuiViewport* viewport);
     IMGUI_API void              UpdatePlatformWindows();                                        // call in main loop. will call CreateWindow/ResizeWindow/etc. platform functions for each secondary viewport, and DestroyWindow for each inactive viewport.
     IMGUI_API void              RenderPlatformWindowsDefault(void* platform_render_arg = NULL, void* renderer_render_arg = NULL); // call in main loop. will call RenderWindow/SwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.
     IMGUI_API void              DestroyPlatformWindows();                                       // call DestroyWindow platform functions for all viewports. call from back-end Shutdown() if you need to close platform windows before imgui shutdown. otherwise will be called by DestroyContext().
