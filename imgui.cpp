@@ -11092,8 +11092,6 @@ static void ImGui::UpdateViewportsNewFrame()
             //    g.ActiveIdClickOffset = ImFloor(g.ActiveIdClickOffset * scale_factor);
         }
         viewport->DpiScale = new_dpi_scale;
-
-        viewport->ClearRequestFlags();
     }
 
     if (!viewports_enabled)
@@ -11189,10 +11187,20 @@ ImGuiViewportP* ImGui::AddUpdateViewport(ImGuiWindow* window, ImGuiID id, const 
     ImGuiViewportP* viewport = (ImGuiViewportP*)FindViewportByID(id);
     if (viewport)
     {
-        if (!viewport->PlatformRequestMove)
-            viewport->Pos = pos;
-        if (!viewport->PlatformRequestResize)
-            viewport->Size = size;
+        if (window != NULL)
+        {
+            if (!viewport->PlatformRequestMove)
+                viewport->Pos = pos;
+            if (!viewport->PlatformRequestResize)
+                viewport->Size = size;
+        }
+        else
+        {
+            if (viewport->PlatformRequestMove)
+                viewport->Pos = pos;
+            if (viewport->PlatformRequestResize)
+                viewport->Size = size;
+        }
 
         viewport->Flags = flags | (viewport->Flags & ImGuiViewportFlags_Minimized); // Preserve existing flags
     }
